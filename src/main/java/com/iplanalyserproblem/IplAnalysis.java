@@ -5,8 +5,10 @@ import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
+import com.google.gson.Gson;
 import com.newcsvhandler.CSVBuilderException;
 import com.newcsvhandler.CSVBuilderFactory;
 import com.newcsvhandler.ICSVBuilder;
@@ -33,4 +35,14 @@ public class IplAnalysis
 	        }
 	        return 0;
     }
+	 public String getSortIPLCricketRecords(SortedField.Field field) throws IplAnalysisException 
+	 {
+	        if (iplCsvList == null || iplCsvList.size() == 0) {
+	            throw new IplAnalysisException("No Census Data", IplAnalysisException.ExceptionType.DATA_NOT_FOUND);
+	        }
+	        Comparator<IplCSVBatsman> iplFieldComparator = SortedField.getComparatorField(field);
+	        iplCsvList.sort(iplFieldComparator);
+	        iplCsvList.forEach(System.out::println);
+	        return new Gson().toJson(iplCsvList);
+	    }
 }

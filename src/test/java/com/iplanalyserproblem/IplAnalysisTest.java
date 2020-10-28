@@ -2,6 +2,8 @@ package com.iplanalyserproblem;
 
 import org.junit.Test;
 
+import com.google.gson.Gson;
+
 import junit.framework.Assert;
 
 public class IplAnalysisTest
@@ -12,5 +14,13 @@ public class IplAnalysisTest
         IplAnalysis iplAnalysis = new IplAnalysis();
         int battingAverage = iplAnalysis.loadCricketIPLCSVData(CRICKET_CSV_FILE);
         Assert.assertEquals(101, battingAverage);
+    }
+    @Test
+    public void givenIPLData_WhenSortedAsHighestBattingAverage_ShouldReturnSortedResult() throws IplAnalysisException {
+        IplAnalysis iplAnalysis = new IplAnalysis();
+        iplAnalysis.loadCricketIPLCSVData( CRICKET_CSV_FILE);
+        String iplPlayersRecords = iplAnalysis.getSortIPLCricketRecords(SortedField.Field.AVERAGE);
+        IplCSVBatsman[] mostAverageRuns = new Gson().fromJson(iplPlayersRecords, IplCSVBatsman[].class);
+        Assert.assertEquals("MS Dhoni", mostAverageRuns[0].player);
     }
 }
