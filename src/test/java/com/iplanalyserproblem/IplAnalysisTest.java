@@ -29,6 +29,6 @@ public class IplAnalysisTest
         iplAnalysis.loadCricketIPLCSVData( CRICKET_CSV_FILE);
         String iplPlayersRecords = iplAnalysis.getSortIPLCricketRecords(SortedField.Field.STRIKE_RATE);
         IplCSVBatsman[] highestStrikeRate = new Gson().fromJson(iplPlayersRecords, IplCSVBatsman[].class);
-        Assert.assertEquals("MS Dhoni", highestStrikeRate[highestStrikeRate.length-1].player);
+        Assert.assertEquals("Ishant Sharma", highestStrikeRate[highestStrikeRate.length-1].player);
     }
 }
