@@ -8,7 +8,7 @@ public class SortedField
 {
 	static Map<Field, Comparator> sortFieldComparator = new HashMap<>();
 	public enum Field {
-		AVERAGE,STRIKE_RATE,FOUR_AND_SIX,FOUR_AND_SIX_STRIKE_RATE
+		AVERAGE,STRIKE_RATE,FOUR_AND_SIX,FOUR_AND_SIX_STRIKE_RATE, AVERAGE_WITH_BEST_STRIKE_RATE
 
 	}
 	public static Comparator getComparatorField(Field field) 
@@ -19,6 +19,7 @@ public class SortedField
 	      sortFieldComparator.put(Field.STRIKE_RATE, iplStrikeRateComparator);
 	      sortFieldComparator.put(Field.FOUR_AND_SIX, new SortedFieldComparator());
 	      sortFieldComparator.put(Field.FOUR_AND_SIX_STRIKE_RATE, new SortedFieldComparator().thenComparing(iplStrikeRateComparator));
+	      sortFieldComparator.put(Field.AVERAGE_WITH_BEST_STRIKE_RATE,iplAverageComparator.thenComparing(iplStrikeRateComparator));
 	      Comparator<IplCSVBatsman> FieldComparator = sortFieldComparator.get(field);
 	        return FieldComparator;
 	}
