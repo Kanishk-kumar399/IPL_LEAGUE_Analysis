@@ -8,7 +8,7 @@ import junit.framework.Assert;
 
 public class IplAnalysisTest
 {
-	public static final String CRICKET_CSV_FILE ="C:\\Users\\Asus\\eclipse-workspace\\IPLAnalyser\\src\\test\\resources\\WP DP Data_01 IPL2019FactsheetMostRuns.csv";
+	public static final String CRICKET_CSV_FILE ="C:\\Users\\Asus\\eclipse-workspace\\IPLAnalyser\\src\\test\\resources\\WP DP Data_01 IPL2019FactsheetMostRuns (1).csv";
     @Test
     public void givenIPL_CSVFileShouldReturnCorrectRecords() throws IplAnalysisException {
         IplAnalysis iplAnalysis = new IplAnalysis();
@@ -21,6 +21,6 @@ public class IplAnalysisTest
         iplAnalysis.loadCricketIPLCSVData( CRICKET_CSV_FILE);
         String iplPlayersRecords = iplAnalysis.getSortIPLCricketRecords(SortedField.Field.AVERAGE);
         IplCSVBatsman[] mostAverageRuns = new Gson().fromJson(iplPlayersRecords, IplCSVBatsman[].class);
-        Assert.assertEquals("MS Dhoni", mostAverageRuns[0].player);
+        Assert.assertEquals("MS Dhoni", mostAverageRuns[mostAverageRuns.length-1].player);
     }
 }

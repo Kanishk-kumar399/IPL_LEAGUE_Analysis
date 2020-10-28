@@ -22,7 +22,7 @@ public class IplCSVBatsman
     @CsvBindByName(column = "HS", required = true)
     public String highScore;
     @CsvBindByName(column = "Avg", required = true)
-    public String average;
+    public double average;
     @CsvBindByName(column = "BF", required = true)
     public int ballFaced;
     @CsvBindByName(column = "SR", required = true)
