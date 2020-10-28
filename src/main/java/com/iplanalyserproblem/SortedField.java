@@ -18,6 +18,7 @@ public class SortedField
 	      Comparator<IplCSVBatsman> iplStrikeRateComparator = Comparator.comparing(census->census.strikeRate);
 	      sortFieldComparator.put(Field.STRIKE_RATE, iplStrikeRateComparator);
 	      sortFieldComparator.put(Field.FOUR_AND_SIX, new SortedFieldComparator());
+	      sortFieldComparator.put(Field.FOUR_AND_SIX_STRIKE_RATE, new SortedFieldComparator().thenComparing(iplStrikeRateComparator));
 	      Comparator<IplCSVBatsman> FieldComparator = sortFieldComparator.get(field);
 	        return FieldComparator;
 	}
