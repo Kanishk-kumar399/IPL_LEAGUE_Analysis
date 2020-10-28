@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import com.google.gson.Gson;
 
-import junit.framework.Assert;
+import org.junit.Assert;
 
 public class IplAnalysisTest
 {
@@ -22,5 +22,13 @@ public class IplAnalysisTest
         String iplPlayersRecords = iplAnalysis.getSortIPLCricketRecords(SortedField.Field.AVERAGE);
         IplCSVBatsman[] mostAverageRuns = new Gson().fromJson(iplPlayersRecords, IplCSVBatsman[].class);
         Assert.assertEquals("MS Dhoni", mostAverageRuns[mostAverageRuns.length-1].player);
+    }
+    @Test
+    public void givenIPLData_WhenSortedAsHighestStrikingRate_ShouldReturnSortedResult() throws IplAnalysisException {
+        IplAnalysis iplAnalysis = new IplAnalysis();
+        iplAnalysis.loadCricketIPLCSVData( CRICKET_CSV_FILE);
+        String iplPlayersRecords = iplAnalysis.getSortIPLCricketRecords(SortedField.Field.STRIKE_RATE);
+        IplCSVBatsman[] highestStrikeRate = new Gson().fromJson(iplPlayersRecords, IplCSVBatsman[].class);
+        Assert.assertEquals("MS Dhoni", highestStrikeRate[highestStrikeRate.length-1].player);
     }
 }

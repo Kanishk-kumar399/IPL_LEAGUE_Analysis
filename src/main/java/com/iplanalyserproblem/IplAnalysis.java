@@ -44,5 +44,5 @@ public class IplAnalysis
 	        iplCsvList.sort(iplFieldComparator);
 	        iplCsvList.forEach(System.out::println);
 	        return new Gson().toJson(iplCsvList);
-	    }
+	}
 }

@@ -8,15 +8,16 @@ public class SortedField
 {
 	static Map<Field, Comparator> sortFieldComparator = new HashMap<>();
 	public enum Field {
-		AVERAGE
+		AVERAGE,STRIKE_RATE
 
 	}
 	public static Comparator getComparatorField(Field field) 
 	{
 	      Comparator<IplCSVBatsman> iplAverageComparator = Comparator.comparing(census->census.average);
 	      sortFieldComparator.put(Field.AVERAGE, iplAverageComparator);
-	      Comparator<IplCSVBatsman> daoComparator = sortFieldComparator.get(field);
-	        return daoComparator;
+	      
+	      Comparator<IplCSVBatsman> FieldComparator = sortFieldComparator.get(field);
+	        return FieldComparator;
 	}
 
 }
