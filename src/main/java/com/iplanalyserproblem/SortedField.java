@@ -13,6 +13,7 @@ public class SortedField
 	}
 	public static Comparator getComparatorField(Field field) 
 	{
+		  Comparator<IplCSVBatsman> iplRunComparator = Comparator.comparing(census -> census.runs);
 	      Comparator<IplCSVBatsman> iplAverageComparator = Comparator.comparing(census->census.average);
 	      sortFieldComparator.put(Field.AVERAGE, iplAverageComparator);
 	      Comparator<IplCSVBatsman> iplStrikeRateComparator = Comparator.comparing(census->census.strikeRate);
@@ -20,6 +21,7 @@ public class SortedField
 	      sortFieldComparator.put(Field.FOUR_AND_SIX, new SortedFieldComparator());
 	      sortFieldComparator.put(Field.FOUR_AND_SIX_STRIKE_RATE, new SortedFieldComparator().thenComparing(iplStrikeRateComparator));
 	      sortFieldComparator.put(Field.AVERAGE_WITH_BEST_STRIKE_RATE,iplAverageComparator.thenComparing(iplStrikeRateComparator));
+	      sortFieldComparator.put(Field.MAXIMUM_RUNS_WITH_BEST_AVERAGE,(iplRunComparator).thenComparing(iplAverageComparator));
 	      Comparator<IplCSVBatsman> FieldComparator = sortFieldComparator.get(field);
 	        return FieldComparator;
 	}

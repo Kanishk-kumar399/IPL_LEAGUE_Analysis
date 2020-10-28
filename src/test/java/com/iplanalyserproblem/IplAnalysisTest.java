@@ -61,6 +61,6 @@ public class IplAnalysisTest
         iplAnalysis.loadCricketIPLCSVData( CRICKET_CSV_FILE);
         String iplPlayersRecords = iplAnalysis.getSortIPLCricketRecords(SortedField.Field.MAXIMUM_RUNS_WITH_BEST_AVERAGE);
         IplCSVBatsman[] maximumRunsWithBestAverage = new Gson().fromJson(iplPlayersRecords, IplCSVBatsman[].class);
-        Assert.assertEquals("MS Dhoni", maximumRunsWithBestAverage[maximumRunsWithBestAverage.length-1].player);
+        Assert.assertEquals("David Warner ", maximumRunsWithBestAverage[maximumRunsWithBestAverage.length-1].player);
     }
 }
