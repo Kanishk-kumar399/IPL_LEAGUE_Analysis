@@ -32,11 +32,11 @@ public class IplAnalysisTest
         Assert.assertEquals("Ishant Sharma", highestStrikeRate[highestStrikeRate.length-1].player);
     }
     @Test
-    public void givenIPLData_WhenSortedAsHighest4sand6s_ShouldReturnSortedResult() throws IplAnalysisException {
+    public void givenIPLData_WhenSortedAsHighest_4sand6s_ShouldReturnSortedResult() throws IplAnalysisException {
         IplAnalysis iplAnalysis = new IplAnalysis();
         iplAnalysis.loadCricketIPLCSVData( CRICKET_CSV_FILE);
         String iplPlayersRecords = iplAnalysis.getSortIPLCricketRecords(SortedField.Field.FOUR_AND_SIX);
         IplCSVBatsman[] fourAndSixSorted = new Gson().fromJson(iplPlayersRecords, IplCSVBatsman[].class);
-        Assert.assertEquals("Ishant Sharma", fourAndSixSorted[fourAndSixSorted.length-1].player);
+        Assert.assertEquals("Andre Russell", fourAndSixSorted[fourAndSixSorted.length-1].player);
     }
 }
