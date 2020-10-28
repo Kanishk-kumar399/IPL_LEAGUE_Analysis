@@ -55,4 +55,12 @@ public class IplAnalysisTest
         IplCSVBatsman[] averageWithHighestSR = new Gson().fromJson(iplPlayersRecords, IplCSVBatsman[].class);
         Assert.assertEquals("MS Dhoni", averageWithHighestSR[averageWithHighestSR.length-1].player);
     }
+    @Test
+    public void givenIPLData_WhenSortedOn_MaximumRuns_AndBestAverage_ShouldReturnSortedResult() throws IplAnalysisException {
+        IplAnalysis iplAnalysis = new IplAnalysis();
+        iplAnalysis.loadCricketIPLCSVData( CRICKET_CSV_FILE);
+        String iplPlayersRecords = iplAnalysis.getSortIPLCricketRecords(SortedField.Field.MAXIMUM_RUNS_WITH_BEST_AVERAGE);
+        IplCSVBatsman[] maximumRunsWithBestAverage = new Gson().fromJson(iplPlayersRecords, IplCSVBatsman[].class);
+        Assert.assertEquals("MS Dhoni", maximumRunsWithBestAverage[maximumRunsWithBestAverage.length-1].player);
+    }
 }

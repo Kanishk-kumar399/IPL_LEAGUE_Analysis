@@ -8,7 +8,7 @@ public class SortedField
 {
 	static Map<Field, Comparator> sortFieldComparator = new HashMap<>();
 	public enum Field {
-		AVERAGE,STRIKE_RATE,FOUR_AND_SIX,FOUR_AND_SIX_STRIKE_RATE, AVERAGE_WITH_BEST_STRIKE_RATE
+		RUN,AVERAGE,STRIKE_RATE,FOUR_AND_SIX,FOUR_AND_SIX_STRIKE_RATE, AVERAGE_WITH_BEST_STRIKE_RATE,MAXIMUM_RUNS_WITH_BEST_AVERAGE
 
 	}
 	public static Comparator getComparatorField(Field field) 
