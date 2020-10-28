@@ -7,4 +7,9 @@ public class IplAnalysis
     {
         System.out.println( "Hello World!" );
     }
+
+	public int loadCricketIPLData(String cricketCsvFile) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }
