@@ -42,7 +42,6 @@ public class IplAnalysis
 	        }
 	        Comparator<IplCSVBatsman> iplFieldComparator = SortedField.getComparatorField(field);
 	        iplCsvList.sort(iplFieldComparator);
-	        iplCsvList.forEach(System.out::println);
 	        return new Gson().toJson(iplCsvList);
 	}
 }

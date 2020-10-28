@@ -44,7 +44,15 @@ public class IplAnalysisTest
         IplAnalysis iplAnalysis = new IplAnalysis();
         iplAnalysis.loadCricketIPLCSVData( CRICKET_CSV_FILE);
         String iplPlayersRecords = iplAnalysis.getSortIPLCricketRecords(SortedField.Field.FOUR_AND_SIX_STRIKE_RATE);
-        IplCSVBatsman[] fourAndSixSorted = new Gson().fromJson(iplPlayersRecords, IplCSVBatsman[].class);
-        Assert.assertEquals("Andre Russell", fourAndSixSorted[fourAndSixSorted.length-1].player);
+        IplCSVBatsman[] fourAndSixSortedWithHighestSR = new Gson().fromJson(iplPlayersRecords, IplCSVBatsman[].class);
+        Assert.assertEquals("Andre Russell", fourAndSixSortedWithHighestSR[fourAndSixSortedWithHighestSR.length-1].player);
+    }
+    @Test
+    public void givenIPLData_WhenSortedOn_GreatAverage_WithHighestStrikeRate_ShouldReturnSortedResult() throws IplAnalysisException {
+        IplAnalysis iplAnalysis = new IplAnalysis();
+        iplAnalysis.loadCricketIPLCSVData( CRICKET_CSV_FILE);
+        String iplPlayersRecords = iplAnalysis.getSortIPLCricketRecords(SortedField.Field.AVERAGE_WITH_BEST_STRIKE_RATE);
+        IplCSVBatsman[] averageWithHighestSR = new Gson().fromJson(iplPlayersRecords, IplCSVBatsman[].class);
+        Assert.assertEquals("MS Dhoni", averageWithHighestSR[averageWithHighestSR.length-1].player);
     }
 }
