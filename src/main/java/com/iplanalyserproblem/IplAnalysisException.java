@@ -3,7 +3,7 @@ package com.iplanalyserproblem;
 public class IplAnalysisException extends Exception{
 	 enum ExceptionType
 	    {
-	        ENTERED_NULL,DATA_NOT_FOUND;
+	       DATA_NOT_FOUND,FILE_ISSUE;
 	    }
 	    ExceptionType type;
 	    public IplAnalysisException(String message, String name) {
