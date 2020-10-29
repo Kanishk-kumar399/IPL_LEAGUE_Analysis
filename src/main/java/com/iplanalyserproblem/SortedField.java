@@ -10,7 +10,7 @@ public class SortedField
 	static Map<Field, Comparator> sortBowlerFieldComparator=new HashMap<>();
 	public enum Field {
 		RUN,AVERAGE,STRIKE_RATE,FOUR_AND_SIX,FOUR_AND_SIX_STRIKE_RATE, AVERAGE_WITH_BEST_STRIKE_RATE,MAXIMUM_RUNS_WITH_BEST_AVERAGE
-		,BOWLING_AVERAGE, BOWLING_STRIKE_RATE,ECONOMY,BEST_STRIKING_RATE_WITH_4AND5WICKET
+		,BOWLING_AVERAGE, BOWLING_STRIKE_RATE,ECONOMY,BEST_STRIKING_RATE_WITH_4AND5WICKET,BEST_BOWLING_AVG_AND_SR
 	}
 	public static Comparator getComparatorField(Field field) 
 	{
@@ -35,6 +35,8 @@ public class SortedField
 	    Comparator<IplCSVBowler> fourWicketAndFiveWicket=Comparator.comparing(census->(census.fourWicket*4+census.fiveWicket*5));
 	    Comparator<IplCSVBowler> strikeRate4wAnd5w=fourWicketAndFiveWicket.reversed().thenComparing(new SortedBowlerSRComparator());
 	    sortBowlerFieldComparator.put(Field.BEST_STRIKING_RATE_WITH_4AND5WICKET,strikeRate4wAnd5w);
+	    Comparator<IplCSVBowler> averageAndStrikeRate=new SortedBowlerAverageComparator().thenComparing(new SortedBowlerSRComparator());
+	    sortBowlerFieldComparator.put(Field.BEST_BOWLING_AVG_AND_SR,averageAndStrikeRate);
 	    Comparator<IplCSVBowler> bowlingFieldComparator = sortBowlerFieldComparator.get(field);
         return bowlingFieldComparator; 
 	}

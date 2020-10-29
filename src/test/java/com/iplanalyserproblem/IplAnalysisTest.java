@@ -96,4 +96,12 @@ public class IplAnalysisTest
         IplCSVBowler[] bestSR4wAnd5wBowler = new Gson().fromJson(iplPlayersRecords, IplCSVBowler[].class);
         Assert.assertEquals("Kagiso Rabada", bestSR4wAnd5wBowler[0].player);
     }
+    @Test
+    public void givenIPLData_WhenSortedOnBestBowlingAverageWithBestSR_ShouldReturnSortedResult() throws IplAnalysisException {
+        IplAnalysis iplAnalysis = new IplAnalysis();
+        iplAnalysis.loadCricketBowlerIPLCSVData( BOWLER_CSV_FILE);
+        String iplPlayersRecords = iplAnalysis.getSortIPLBowlerRecords(SortedField.Field.BEST_BOWLING_AVG_AND_SR);
+        IplCSVBowler[] bestAverageAndStrikeRate = new Gson().fromJson(iplPlayersRecords, IplCSVBowler[].class);
+        Assert.assertEquals("Anukul Roy", bestAverageAndStrikeRate[0].player);
+    }
 }
