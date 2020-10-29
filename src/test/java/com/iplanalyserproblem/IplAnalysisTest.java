@@ -80,4 +80,12 @@ public class IplAnalysisTest
         IplCSVBowler[] bestStrikeRateBowler = new Gson().fromJson(iplPlayersRecords, IplCSVBowler[].class);
         Assert.assertEquals("Alzarri Joseph", bestStrikeRateBowler[0].player);
     }
+    @Test
+    public void givenIPLData_WhenSortedOnBestEconomyRate_ShouldReturnSortedResult() throws IplAnalysisException {
+        IplAnalysis iplAnalysis = new IplAnalysis();
+        iplAnalysis.loadCricketBowlerIPLCSVData( BOWLER_CSV_FILE);
+        String iplPlayersRecords = iplAnalysis.getSortIPLBowlerRecords(SortedField.Field.ECONOMY);
+        IplCSVBowler[] bestEconomyBowler = new Gson().fromJson(iplPlayersRecords, IplCSVBowler[].class);
+        Assert.assertEquals("Shivam Dube", bestEconomyBowler[0].player);
+    }
 }

@@ -10,7 +10,7 @@ public class SortedField
 	static Map<Field, Comparator> sortBowlerFieldComparator=new HashMap<>();
 	public enum Field {
 		RUN,AVERAGE,STRIKE_RATE,FOUR_AND_SIX,FOUR_AND_SIX_STRIKE_RATE, AVERAGE_WITH_BEST_STRIKE_RATE,MAXIMUM_RUNS_WITH_BEST_AVERAGE
-		,BOWLING_AVERAGE, BOWLING_STRIKE_RATE
+		,BOWLING_AVERAGE, BOWLING_STRIKE_RATE,ECONOMY
 	}
 	public static Comparator getComparatorField(Field field) 
 	{
@@ -30,6 +30,8 @@ public class SortedField
 	{
 	    sortBowlerFieldComparator.put(Field.BOWLING_AVERAGE, new SortedBowlerAverageComparator());
 	    sortBowlerFieldComparator.put(Field.BOWLING_STRIKE_RATE,new SortedBowlerSRComparator());
+	    Comparator<IplCSVBowler> economyComparator=Comparator.comparing(census->census.economy);
+	    sortBowlerFieldComparator.put(Field.ECONOMY,economyComparator);
 	    Comparator<IplCSVBowler> bowlingFieldComparator = sortBowlerFieldComparator.get(field);
         return bowlingFieldComparator; 
 	}

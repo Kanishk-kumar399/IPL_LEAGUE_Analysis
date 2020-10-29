@@ -71,7 +71,6 @@ public class IplAnalysis
 	        }
 	        Comparator<IplCSVBowler> iplFieldComparator = SortedField.getBowlingComparatorField(field);
 	        iplCsvBowlerList.sort(iplFieldComparator);
-	        iplCsvBowlerList.forEach(System.out::println);
 	        return new Gson().toJson(iplCsvBowlerList);
 	}
 }
