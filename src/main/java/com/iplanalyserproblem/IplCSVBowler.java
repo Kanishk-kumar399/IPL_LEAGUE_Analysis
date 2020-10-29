@@ -28,7 +28,7 @@ public class IplCSVBowler
 	    public int wickets;
 
 	    @CsvBindByName(column = "BBI")
-	    public int bestBallingInning;
+	    public int bestBowlingInning;
 
 	    @CsvBindByName(column = "Avg")
 	    public double average;
@@ -40,7 +40,7 @@ public class IplCSVBowler
 	    public double strikeRate;
 
 	    @CsvBindByName(column = "4w")
-	    public int fourWkt;
+	    public int fourWicket;
 
 	    @CsvBindByName(column = "5w")
 	    public int fiveWicket;
@@ -55,11 +55,11 @@ public class IplCSVBowler
 	                ", over=" + over +
 	                ", runs=" + runs +
 	                ", wickets=" + wickets +
-	                ", bestBallingInning=" + bestBallingInning +
+	                ", bestBallingInning=" + bestBowlingInning +
 	                ", average=" + average +
 	                ", economy=" + economy +
 	                ", strikeRate=" + strikeRate +
-	                ", fourWkt=" + fourWkt +
+	                ", fourWkt=" + fourWicket +
 	                ", fiveWicket=" + fiveWicket +
 	                '}';
 	    }

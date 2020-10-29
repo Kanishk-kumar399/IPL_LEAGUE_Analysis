@@ -9,7 +9,8 @@ import org.junit.Assert;
 public class IplAnalysisTest
 {
 	public static final String CRICKET_CSV_FILE ="C:\\Users\\Asus\\eclipse-workspace\\IPLAnalyser\\src\\test\\resources\\WP DP Data_01 IPL2019FactsheetMostRuns (1).csv";
-    @Test
+	public static final String BOWLER_CSV_FILE="C:\\Users\\Asus\\eclipse-workspace\\IPLAnalyser\\src\\test\\resources\\WP DP Data_02 IPL2019FactsheetMostWkts.csv";
+	@Test
     public void givenIPL_CSVFileShouldReturnCorrectRecords() throws IplAnalysisException {
         IplAnalysis iplAnalysis = new IplAnalysis();
         int battingAverage = iplAnalysis.loadCricketIPLCSVData(CRICKET_CSV_FILE);
@@ -62,5 +63,13 @@ public class IplAnalysisTest
         String iplPlayersRecords = iplAnalysis.getSortIPLCricketRecords(SortedField.Field.MAXIMUM_RUNS_WITH_BEST_AVERAGE);
         IplCSVBatsman[] maximumRunsWithBestAverage = new Gson().fromJson(iplPlayersRecords, IplCSVBatsman[].class);
         Assert.assertEquals("David Warner ", maximumRunsWithBestAverage[maximumRunsWithBestAverage.length-1].player);
+    }
+    @Test
+    public void givenIPLData_WhenSortedOnTopBowlingAverages_ShouldReturnSortedResult() throws IplAnalysisException {
+        IplAnalysis iplAnalysis = new IplAnalysis();
+        iplAnalysis.loadCricketBowlerIPLCSVData( BOWLER_CSV_FILE);
+        String iplPlayersRecords = iplAnalysis.getSortIPLBowlerRecords(SortedField.Field.MAXIMUM_RUNS_WITH_BEST_AVERAGE);
+        IplCSVBowler[] maximumRunsWithBestAverage = new Gson().fromJson(iplPlayersRecords, IplCSVBowler[].class);
+        Assert.assertEquals("", maximumRunsWithBestAverage[maximumRunsWithBestAverage.length-1].player);
     }
 }
