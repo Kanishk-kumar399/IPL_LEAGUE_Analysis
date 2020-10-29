@@ -2,8 +2,8 @@ package com.iplanalyserproblem;
 
 import java.util.Comparator;
 
-public class SortedBowlerFieldComparator implements Comparator<IplCSVBowler> {
-
+public class SortedBowlerAverageComparator implements Comparator<IplCSVBowler> 
+{
 	@Override
 	public int compare(IplCSVBowler bowler1,IplCSVBowler bowler2) {
 		 if (bowler1.average==0.0) {

@@ -72,4 +72,12 @@ public class IplAnalysisTest
         IplCSVBowler[] bestAverageBowler = new Gson().fromJson(iplPlayersRecords, IplCSVBowler[].class);
         Assert.assertEquals("Anukul Roy", bestAverageBowler[0].player);
     }
+    @Test
+    public void givenIPLData_WhenSortedOnTopBowlingStrikeRate_ShouldReturnSortedResult() throws IplAnalysisException {
+        IplAnalysis iplAnalysis = new IplAnalysis();
+        iplAnalysis.loadCricketBowlerIPLCSVData( BOWLER_CSV_FILE);
+        String iplPlayersRecords = iplAnalysis.getSortIPLBowlerRecords(SortedField.Field.BOWLING_STRIKE_RATE);
+        IplCSVBowler[] bestStrikeRateBowler = new Gson().fromJson(iplPlayersRecords, IplCSVBowler[].class);
+        Assert.assertEquals("Alzarri Joseph", bestStrikeRateBowler[0].player);
+    }
 }
