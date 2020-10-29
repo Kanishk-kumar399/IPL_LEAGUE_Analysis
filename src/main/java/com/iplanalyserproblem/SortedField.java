@@ -7,9 +7,10 @@ import java.util.Map;
 public class SortedField 
 {
 	static Map<Field, Comparator> sortFieldComparator = new HashMap<>();
+	static Map<Field, Comparator> sortBowlerFieldComparator=new HashMap<>();
 	public enum Field {
 		RUN,AVERAGE,STRIKE_RATE,FOUR_AND_SIX,FOUR_AND_SIX_STRIKE_RATE, AVERAGE_WITH_BEST_STRIKE_RATE,MAXIMUM_RUNS_WITH_BEST_AVERAGE
-
+		,BOWLING_AVERAGE
 	}
 	public static Comparator getComparatorField(Field field) 
 	{
@@ -24,6 +25,13 @@ public class SortedField
 	      sortFieldComparator.put(Field.MAXIMUM_RUNS_WITH_BEST_AVERAGE,(iplRunComparator).thenComparing(iplAverageComparator));
 	      Comparator<IplCSVBatsman> FieldComparator = sortFieldComparator.get(field);
 	        return FieldComparator;
+	}
+	public static Comparator getBowlingComparatorField(Field field)
+	{
+
+	    sortBowlerFieldComparator.put(Field.BOWLING_AVERAGE, new SortedBowlerFieldComparator());
+	    Comparator<IplCSVBowler> bowlingFieldComparator = sortBowlerFieldComparator.get(field);
+        return bowlingFieldComparator; 
 	}
 
 }

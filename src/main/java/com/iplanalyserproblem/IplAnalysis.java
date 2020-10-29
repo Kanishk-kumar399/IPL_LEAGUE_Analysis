@@ -45,9 +45,9 @@ public class IplAnalysis
 	        iplCsvList.sort(iplFieldComparator);
 	        return new Gson().toJson(iplCsvList);
 	}
-	public int loadCricketBowlerIPLCSVData(String csvFilePath) throws IplAnalysisException
+	public int loadCricketBowlerIPLCSVData(String csvBowlerFilePath) throws IplAnalysisException
 	{
-		 try (Reader reader = Files.newBufferedReader(Paths.get(csvFilePath));) {
+		 try (Reader reader = Files.newBufferedReader(Paths.get(csvBowlerFilePath));) {
 	            ICSVBuilder csvbuilder = CSVBuilderFactory.createCSVBuilder();
 	            iplCsvBowlerList= csvbuilder.getCSVFileList(reader, IplCSVBowler.class);
 	            return iplCsvBowlerList.size();
@@ -69,8 +69,9 @@ public class IplAnalysis
 	        if (iplCsvBowlerList == null || iplCsvBowlerList.size() == 0) {
 	            throw new IplAnalysisException("No Census Data", IplAnalysisException.ExceptionType.DATA_NOT_FOUND);
 	        }
-	        Comparator<IplCSVBowler> iplFieldComparator = SortedField.getComparatorField(field);
+	        Comparator<IplCSVBowler> iplFieldComparator = SortedField.getBowlingComparatorField(field);
 	        iplCsvBowlerList.sort(iplFieldComparator);
+	        iplCsvBowlerList.forEach(System.out::println);
 	        return new Gson().toJson(iplCsvBowlerList);
 	}
 }

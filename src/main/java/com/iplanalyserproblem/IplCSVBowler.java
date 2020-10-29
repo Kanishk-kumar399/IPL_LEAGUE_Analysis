@@ -34,7 +34,7 @@ public class IplCSVBowler
 	    public double average;
 
 	    @CsvBindByName(column = "Econ")
-	    public int economy;
+	    public double economy;
 
 	    @CsvBindByName(column = "SR")
 	    public double strikeRate;
