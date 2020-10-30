@@ -12,7 +12,8 @@ public class SortedField
 	public enum Field {
 		RUN,AVERAGE,STRIKE_RATE,FOUR_AND_SIX,FOUR_AND_SIX_STRIKE_RATE, AVERAGE_WITH_BEST_STRIKE_RATE,MAXIMUM_RUNS_WITH_BEST_AVERAGE
 		,BOWLING_AVERAGE, BOWLING_STRIKE_RATE,ECONOMY,BEST_STRIKING_RATE_WITH_4AND5WICKET,BEST_BOWLING_AVG_AND_SR,
-		MAXIMUM_WICKETS_WITH_BEST_AVG, BEST_BATTING_AND_BOWLING_AVEARGE,BEST_ALL_ROUNDER,MAXIMUM_HUNDREDS_WITH_BEST_AVERAGE
+		MAXIMUM_WICKETS_WITH_BEST_AVG, BEST_BATTING_AND_BOWLING_AVEARGE,BEST_ALL_ROUNDER,MAXIMUM_HUNDREDS_WITH_BEST_AVERAGE,
+		ZERO_FIFTY_HUNDRED_BEST_AVERAGE
 	}
 	public static Comparator getComparatorField(Field field) 
 	{
@@ -28,6 +29,7 @@ public class SortedField
 	      sortFieldComparator.put(Field.AVERAGE_WITH_BEST_STRIKE_RATE,iplAverageComparator.thenComparing(iplStrikeRateComparator));
 	      sortFieldComparator.put(Field.MAXIMUM_RUNS_WITH_BEST_AVERAGE,(iplRunComparator).thenComparing(iplAverageComparator));
 	      sortFieldComparator.put(Field.MAXIMUM_HUNDREDS_WITH_BEST_AVERAGE,(iplHundredComparator.reversed()).thenComparing(iplAverageComparator.reversed()));
+	      sortFieldComparator.put(Field.ZERO_FIFTY_HUNDRED_BEST_AVERAGE,iplAverageComparator.reversed());
 	      Comparator<IplCSVBatsman> FieldComparator = sortFieldComparator.get(field);
 	        return FieldComparator;
 	}
