@@ -9,20 +9,22 @@ import java.util.Comparator;
 import java.util.List;
 
 import com.google.gson.Gson;
+import com.iplanalyserproblem.SortedField.Field;
 import com.newcsvhandler.CSVBuilderException;
 import com.newcsvhandler.CSVBuilderFactory;
 import com.newcsvhandler.ICSVBuilder;
 
 public class IplAnalysis 
 {
-	List<IplCSVBatsman> iplCsvList = new ArrayList<>();
+	List<IplCSVBatsman> iplCsvBatsmanList = new ArrayList<>();
 	List<IplCSVBowler> iplCsvBowlerList=new ArrayList<>();
+	List<IplCSVALLRounder> iplCsvALLRounderList=new ArrayList<>();
 	public int loadCricketIPLCSVData(String csvFilePath) throws IplAnalysisException 
 	{
 		 try (Reader reader = Files.newBufferedReader(Paths.get(csvFilePath));) {
 	            ICSVBuilder csvbuilder = CSVBuilderFactory.createCSVBuilder();
-	            iplCsvList= csvbuilder.getCSVFileList(reader, IplCSVBatsman.class);
-	            return iplCsvList.size();
+	            iplCsvBatsmanList= csvbuilder.getCSVFileList(reader, IplCSVBatsman.class);
+	            return iplCsvBatsmanList.size();
 
 	        }
 		 	catch (IOException e) {
@@ -38,12 +40,12 @@ public class IplAnalysis
     }
 	 public String getSortIPLCricketRecords(SortedField.Field field) throws IplAnalysisException 
 	 {
-	        if (iplCsvList == null || iplCsvList.size() == 0) {
+	        if (iplCsvBatsmanList == null || iplCsvBatsmanList.size() == 0) {
 	            throw new IplAnalysisException("No Census Data", IplAnalysisException.ExceptionType.DATA_NOT_FOUND);
 	        }
 	        Comparator<IplCSVBatsman> iplFieldComparator = SortedField.getComparatorField(field);
-	        iplCsvList.sort(iplFieldComparator);
-	        return new Gson().toJson(iplCsvList);
+	        iplCsvBatsmanList.sort(iplFieldComparator);
+	        return new Gson().toJson(iplCsvBatsmanList);
 	}
 	public int loadCricketBowlerIPLCSVData(String csvBowlerFilePath) throws IplAnalysisException
 	{
@@ -72,5 +74,24 @@ public class IplAnalysis
 	        Comparator<IplCSVBowler> iplFieldComparator = SortedField.getBowlingComparatorField(field);
 	        iplCsvBowlerList.sort(iplFieldComparator);
 	        return new Gson().toJson(iplCsvBowlerList);
+	}
+	public String getSortedIPLAllRounderRecords(SortedField.Field field) throws IplAnalysisException
+	{
+		for(int ibat = 0; ibat < iplCsvBatsmanList.size(); ibat++) 
+		{
+			for(int ibowl = 0; ibowl < iplCsvBowlerList.size(); ibowl++)
+			{
+				if(iplCsvBatsmanList.get(ibat).player.matches((iplCsvBowlerList).get(ibowl).player)) 
+				{
+					IplCSVALLRounder allRounderPlayerData = new IplCSVALLRounder(iplCsvBatsmanList.get(ibat).player, iplCsvBatsmanList.get(ibat).runs,iplCsvBatsmanList.get(ibat).average, iplCsvBowlerList.get(ibowl).average,iplCsvBowlerList.get(ibowl).wickets);
+					System.out.println(allRounderPlayerData);
+					iplCsvALLRounderList.add(allRounderPlayerData);
+				}
+			}
+		}
+		Comparator<IplCSVALLRounder> iplFieldComparator = SortedField.getAllRounderComparatorField(field);
+        iplCsvALLRounderList.sort(iplFieldComparator);
+        iplCsvALLRounderList.forEach((System.out::println));
+        return new Gson().toJson(iplCsvALLRounderList);
 	}
 }

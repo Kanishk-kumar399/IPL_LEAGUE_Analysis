@@ -112,4 +112,13 @@ public class IplAnalysisTest
         IplCSVBowler[] highestWicketWithBestAverage = new Gson().fromJson(iplPlayersRecords, IplCSVBowler[].class);
         Assert.assertEquals("Imran Tahir", highestWicketWithBestAverage[0].player);
     }
+    @Test
+    public void givenIPLDataForBatsmanAndBowler_WhenSortedOnBestAverages_ShouldReturnSortedResult() throws IplAnalysisException {
+        IplAnalysis iplAnalysis = new IplAnalysis();
+        iplAnalysis.loadCricketBowlerIPLCSVData( BOWLER_CSV_FILE);
+        iplAnalysis.loadCricketIPLCSVData( CRICKET_CSV_FILE);
+        String iplPlayersRecords = iplAnalysis.getSortedIPLAllRounderRecords(SortedField.Field.BEST_BATTING_AND_BOWLING_AVEARGE);
+        IplCSVALLRounder[] bestAverages = new Gson().fromJson(iplPlayersRecords, IplCSVALLRounder[].class);
+        Assert.assertEquals("Andre Russell", bestAverages[0].name);
+    }
 }
