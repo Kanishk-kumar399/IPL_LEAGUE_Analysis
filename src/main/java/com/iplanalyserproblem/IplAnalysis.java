@@ -84,7 +84,6 @@ public class IplAnalysis
 				if(iplCsvBatsmanList.get(ibat).player.matches((iplCsvBowlerList).get(ibowl).player)) 
 				{
 					IplCSVALLRounder allRounderPlayerData = new IplCSVALLRounder(iplCsvBatsmanList.get(ibat).player, iplCsvBatsmanList.get(ibat).runs,iplCsvBatsmanList.get(ibat).average, iplCsvBowlerList.get(ibowl).average,iplCsvBowlerList.get(ibowl).wickets);
-					System.out.println(allRounderPlayerData);
 					iplCsvALLRounderList.add(allRounderPlayerData);
 				}
 			}
