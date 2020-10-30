@@ -121,4 +121,13 @@ public class IplAnalysisTest
         IplCSVALLRounder[] bestAverages = new Gson().fromJson(iplPlayersRecords, IplCSVALLRounder[].class);
         Assert.assertEquals("Andre Russell", bestAverages[0].name);
     }
+    @Test
+    public void givenIPLDataForBatsmanAndBowler_WhenSortedOnBestALLRounder_ShouldReturnSortedResult() throws IplAnalysisException {
+        IplAnalysis iplAnalysis = new IplAnalysis();
+        iplAnalysis.loadCricketBowlerIPLCSVData( BOWLER_CSV_FILE);
+        iplAnalysis.loadCricketIPLCSVData( CRICKET_CSV_FILE);
+        String iplPlayersRecords = iplAnalysis.getSortedIPLAllRounderRecords(SortedField.Field.BEST_ALL_ROUNDER);
+        IplCSVALLRounder[] bestAllRounder = new Gson().fromJson(iplPlayersRecords, IplCSVALLRounder[].class);
+        Assert.assertEquals("Andre Russell", bestAllRounder[0].name);
+    }
 }

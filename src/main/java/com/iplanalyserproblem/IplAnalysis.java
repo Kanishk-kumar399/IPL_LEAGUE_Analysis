@@ -91,7 +91,6 @@ public class IplAnalysis
 		}
 		Comparator<IplCSVALLRounder> iplFieldComparator = SortedField.getAllRounderComparatorField(field);
         iplCsvALLRounderList.sort(iplFieldComparator);
-        iplCsvALLRounderList.forEach((System.out::println));
         return new Gson().toJson(iplCsvALLRounderList);
 	}
 }
